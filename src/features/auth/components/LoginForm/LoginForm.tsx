@@ -8,6 +8,11 @@ import { Button } from '@/components/ui/Button/Button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/Card/Card';
 import styles from './LoginForm.module.css';
 
+interface ApiValidationError {
+  message?: string;
+  validationErrors?: Record<string, string[]>;
+}
+
 export const LoginForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -32,8 +37,9 @@ export const LoginForm = () => {
 
     try {
       await authApi.login({ email, password });
-      router.push('/dashboard'); // Predictable route for successful login
-    } catch (err: any) {
+      router.push('/home'); // Predictable route for successful login
+    } catch (e) {
+      const err = e as ApiValidationError;
       if (err.validationErrors) {
         setValidationErrors(err.validationErrors);
         

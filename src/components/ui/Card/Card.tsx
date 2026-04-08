@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import styles from './Card.module.css';
 
-export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {}
+export type CardProps = React.HTMLAttributes<HTMLDivElement>;
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(({ className, ...props }, ref) => (
   <div ref={ref} className={`${styles.card} ${className || ''}`} {...props} />
@@ -15,7 +15,7 @@ export const CardHeader = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDi
 );
 CardHeader.displayName = 'CardHeader';
 
-export const CardTitle = forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLHeadingElement>>(
+export const CardTitle = forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
   ({ className, ...props }, ref) => (
     <h3 ref={ref} className={`${styles.title} ${className || ''}`} {...props} />
   )

@@ -1,0 +1,157 @@
+.container {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.welcomeSection {
+  margin-bottom: 0.5rem;
+}
+
+.heading {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.subheading {
+  font-size: 1.1rem;
+  color: var(--muted-foreground);
+  margin-bottom: 1.25rem;
+}
+
+.createButton {
+  background-color: var(--secondary);
+  color: var(--foreground);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.createButton:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.pageGridArchitecture {
+  display: grid;
+  grid-template-columns: 3.1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.mainContentArea {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.topCardsGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 2fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.createBanner {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.bannerContent, .bannerAction {
+  position: relative;
+  z-index: 2;
+}
+
+.bannerTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+.bannerText {
+  color: var(--muted-foreground);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  max-width: 60%;
+}
+
+.bannerAction {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.getStartedButton {
+  background-color: #fce2a1; /* Warmer yellow matching the lightbulb in design */
+  color: var(--primary); /* Deep navy blue to match title */
+  border: none;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: filter 0.2s;
+}
+
+.getStartedButton:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+.robotImage {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  object-position: bottom right;
+  z-index: 1;
+  /* Feather the left edge to seamlessly blend the image's cropped background into the white card */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 10%, black 35%, black 100%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 10%, black 35%, black 100%);
+}
+
+.centralColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebarColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.emptyStatsWidget {
+  background-color: var(--card);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  min-height: 250px;
+  flex: 1;
+}

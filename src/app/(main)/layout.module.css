@@ -1,0 +1,102 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--foreground);
+}
+
+.brandIcon {
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: 3rem;
+}
+
+.navLink {
+  color: var(--foreground);
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.7;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.navLink:hover {
+  opacity: 1;
+}
+
+.navLinkActive {
+  opacity: 1;
+  border-bottom: 2px solid var(--primary);
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.iconButton {
+  font-size: 1.25rem;
+  color: var(--foreground);
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.iconButton:hover {
+  opacity: 1;
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease;
+}
+
+.userProfile:hover {
+  background-color: var(--muted);
+}
+
+.avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.mainContent {
+  min-height: calc(100vh - 4.5rem);
+  background-color: var(--muted); /* very light gray/offwhite for contrast behind white cards */
+}

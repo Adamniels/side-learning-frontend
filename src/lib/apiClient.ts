@@ -1,20 +1,33 @@
 export class ApiError extends Error {
   public statusCode: number;
-  public details?: any;
+  public details?: unknown;
   public validationErrors?: Record<string, string[]>;
 
-  constructor(message: string, statusCode: number, details?: any) {
+  constructor(message: string, statusCode: number, details?: unknown) {
     super(message);
     this.name = 'ApiError';
     this.statusCode = statusCode;
     this.details = details;
-    this.validationErrors = details?.errors;
+    this.validationErrors = (details as { errors?: Record<string, string[]> })?.errors;
   }
 }
 
 interface FetchOptions extends RequestInit {
   requireAuth?: boolean;
 }
+
+const AUTH_COOKIE_KEY = 'sl_auth';
+const AUTH_COOKIE_VALUE = '1';
+
+const setAuthCookie = () => {
+  if (typeof document === 'undefined') return;
+  document.cookie = `${AUTH_COOKIE_KEY}=${AUTH_COOKIE_VALUE}; Path=/; SameSite=Lax`;
+};
+
+const clearAuthCookie = () => {
+  if (typeof document === 'undefined') return;
+  document.cookie = `${AUTH_COOKIE_KEY}=; Path=/; Max-Age=0; SameSite=Lax`;
+};
 
 // A global lock and queue for request buffering while refreshing token
 let isRefreshing = false;
@@ -48,6 +61,7 @@ export const setTokens = (accessToken: string, refreshToken: string) => {
   if (typeof window !== 'undefined') {
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
+    setAuthCookie();
   }
 };
 
@@ -55,6 +69,7 @@ export const clearTokens = () => {
   if (typeof window !== 'undefined') {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
+    clearAuthCookie();
   }
 };
 
@@ -156,7 +171,18 @@ export const apiClient = async <T = unknown>(
       return {} as T;
     }
 
-    return await response.json();
+    const contentType = response.headers.get('content-type') ?? '';
+    const rawBody = await response.text();
+
+    if (!rawBody.trim()) {
+      return {} as T;
+    }
+
+    if (contentType.toLowerCase().includes('application/json')) {
+      return JSON.parse(rawBody) as T;
+    }
+
+    return rawBody as T;
   } catch (error) {
     if (error instanceof ApiError) {
       throw error;

@@ -8,6 +8,11 @@ import { Button } from '@/components/ui/Button/Button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/Card/Card';
 import styles from './RegisterForm.module.css';
 
+interface ApiValidationError {
+  message?: string;
+  validationErrors?: Record<string, string[]>;
+}
+
 export const RegisterForm = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -33,8 +38,9 @@ export const RegisterForm = () => {
 
     try {
       await authApi.register({ email, password, displayName: displayName || undefined });
-      router.push('/dashboard'); // Route for successful registration flow
-    } catch (err: any) {
+      router.push('/home'); // Route for successful registration flow
+    } catch (e) {
+      const err = e as ApiValidationError;
       if (err.validationErrors) {
         setValidationErrors(err.validationErrors);
         
