@@ -1,0 +1,101 @@
+:root {
+  --background: #FFFCF7; /* Porcelain */
+  --foreground: #1A202C;
+
+  --card: #ffffff;
+  --card-foreground: #1A202C;
+
+  --popover: #ffffff;
+  --popover-foreground: #1A202C;
+
+  --primary: #738290; /* Slate Grey */
+  --primary-foreground: #ffffff;
+
+  --secondary: #C2D8B9; /* Tea Green */
+  --secondary-foreground: #1A202C;
+
+  --muted: #f4f6fa;
+  --muted-foreground: #738290; /* Slate Grey */
+
+  --accent: #A1B5D8; /* Powder Blue */
+  --accent-foreground: #ffffff;
+
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fef2f2;
+
+  --border: #e2e8f0;
+  --input: #ffffff;
+  --ring: #A1B5D8; /* Powder Blue */
+
+  --radius: 0.75rem;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+/* Base Utility Classes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.text-primary { color: var(--primary); }
+.text-muted { color: var(--muted-foreground); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  background-color: var(--muted);
+}
