@@ -1,5 +1,20 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## API Contracts (OpenAPI)
+
+Frontend API contract types are generated from backend OpenAPI and should be synced instead of hand-written.
+
+- Sync command: `npm run contracts:sync` (or `make contracts-sync`)
+- Local explicit command: `npm run contracts:sync:local` (or `make contracts-sync-local`)
+- Generated file: `src/generated/api-types.ts`
+
+Important policy for contributors and AI agents:
+
+- Do not create duplicate custom DTOs in frontend when generated types exist.
+- If a type/field is missing in generated output, fix the backend OpenAPI/source contract and re-sync rather than adding manual frontend contract files.
+
+See full guide: `docs/contracts-sync.md`.
+
 ## Getting Started
 
 First, run the development server:

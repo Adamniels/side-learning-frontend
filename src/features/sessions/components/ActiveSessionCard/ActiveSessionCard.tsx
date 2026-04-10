@@ -1,13 +1,17 @@
 'use client';
 
 import { useSessions } from '../../hooks/useSessions';
+import { SESSION_STATUS_LABELS } from '../../types';
 import styles from './ActiveSessionCard.module.css';
 
 export function ActiveSessionCard() {
   const { sessions, isLoading, error } = useSessions();
 
   // Find the first session that isn't completed, if any
-  const activeSession = sessions.find(s => s.status === 'InProgress' || s.status === 'Ready' || s.status === 'Draft');
+  const activeSession = sessions.find((s) => s.status === 1 || s.status === 2 || s.status === 3);
+  const activeStatusLabel = activeSession?.status
+    ? SESSION_STATUS_LABELS[activeSession.status]
+    : undefined;
 
   return (
     <div className={styles.card}>
@@ -23,8 +27,8 @@ export function ActiveSessionCard() {
         ) : activeSession ? (
           <>
             <div>
-              <div className={styles.sessionTitle}>Active Lesson: {activeSession.title}</div>
-              <div className={styles.sessionSubtitle}>Session status: {activeSession.status}</div>
+              <div className={styles.sessionTitle}>Active Lesson: {activeSession.title ?? 'Untitled lesson'}</div>
+              <div className={styles.sessionSubtitle}>Session status: {activeStatusLabel ?? 'Unknown'}</div>
             </div>
             
             <div className={styles.progressContainer}>

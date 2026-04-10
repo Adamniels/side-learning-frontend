@@ -1,4 +1,4 @@
-.PHONY: dev build start lint typecheck check clean install
+.PHONY: dev build start lint typecheck check clean install contracts-sync contracts-sync-local
 
 # Default target
 all: install dev
@@ -29,6 +29,14 @@ typecheck:
 
 # Run both lint and typecheck
 check: lint typecheck
+
+# Sync generated OpenAPI types (uses OPENAPI_URL if set, else local fallback)
+contracts-sync:
+	npm run contracts:sync
+
+# Sync generated OpenAPI types from local backend URL explicitly
+contracts-sync-local:
+	npm run contracts:sync:local
 
 # Remove build cache and modules
 clean:
