@@ -39,13 +39,24 @@ export default function SessionsPage() {
         </div>
       ) : (
         <ul className={styles.list}>
-          {sessions.map((s) => {
+          {sessions.map((s, index) => {
             const status = s.status as SessionStatus | undefined;
             const label = status ? SESSION_STATUS_LABELS[status] : '—';
+            const id = s.id;
+            if (!id) {
+              return (
+                <li key={`no-id-${index}`} className={styles.row}>
+                  <span className={styles.rowTitle}>{s.title?.trim() || 'Untitled session'}</span>
+                  <span className={styles.badge}>{label}</span>
+                </li>
+              );
+            }
             return (
-              <li key={s.id} className={styles.row}>
-                <span className={styles.rowTitle}>{s.title?.trim() || 'Untitled session'}</span>
-                <span className={styles.badge}>{label}</span>
+              <li key={id}>
+                <Link href={`/sessions/${id}`} className={styles.rowLink}>
+                  <span className={styles.rowTitle}>{s.title?.trim() || 'Untitled session'}</span>
+                  <span className={styles.badge}>{label}</span>
+                </Link>
               </li>
             );
           })}

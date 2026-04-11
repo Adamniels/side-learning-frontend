@@ -219,6 +219,105 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/users/me/session-design/jobs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Accepted */
+                202: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["EnqueueJobResponse"];
+                    };
+                };
+                /** @description Unauthorized */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["ProblemDetails"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/me/session-design/jobs/{jobId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    jobId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["SessionDesignJobResponseDto"];
+                    };
+                };
+                /** @description Unauthorized */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["ProblemDetails"];
+                    };
+                };
+                /** @description Not Found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["ProblemDetails"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/users/me/sessions": {
         parameters: {
             query?: never;
@@ -242,6 +341,61 @@ export interface paths {
                     };
                     content: {
                         "application/json": components["schemas"]["SessionDto"][];
+                    };
+                };
+                /** @description Unauthorized */
+                401: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["ProblemDetails"];
+                    };
+                };
+                /** @description Not Found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/problem+json": components["schemas"]["ProblemDetails"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/users/me/sessions/{sessionId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    sessionId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["SessionDetailDto"];
                     };
                 };
                 /** @description Unauthorized */
@@ -521,6 +675,11 @@ export interface components {
             /** Format: date-time */
             refreshTokenExpiresAtUtc?: string;
         };
+        EnqueueJobResponse: {
+            /** Format: uuid */
+            jobId?: string;
+            statusUrl?: string | null;
+        };
         LoginRequest: {
             email?: string | null;
             password?: string | null;
@@ -546,6 +705,59 @@ export interface components {
         RevokeRequest: {
             refreshToken?: string | null;
         };
+        SessionContextDto: {
+            explanation?: string | null;
+            whyItMatters?: string | null;
+            youtubeUrl?: string | null;
+            additionalResources?: string | null;
+        };
+        SessionDesignJobErrorDto: {
+            code?: string | null;
+            message?: string | null;
+        };
+        SessionDesignJobResponseDto: {
+            /** Format: uuid */
+            jobId?: string;
+            status?: string | null;
+            /** Format: date-time */
+            createdAtUtc?: string;
+            /** Format: date-time */
+            startedAtUtc?: string | null;
+            /** Format: date-time */
+            completedAtUtc?: string | null;
+            /** Format: uuid */
+            createdSessionId?: string | null;
+            sessionDesignResult?: unknown;
+            error?: components["schemas"]["SessionDesignJobErrorDto"];
+        };
+        SessionDetailDto: {
+            /** Format: uuid */
+            id?: string;
+            title?: string | null;
+            summary?: string | null;
+            goal?: string | null;
+            extension?: string | null;
+            status?: components["schemas"]["SessionStatus"];
+            /** Format: int32 */
+            estimatedDurationInMinutes?: number | null;
+            subjectAreas?: string[] | null;
+            context?: components["schemas"]["SessionContextDto"];
+            handsOn?: components["schemas"]["SessionHandsOnDto"];
+            reflection?: components["schemas"]["SessionReflectionDto"];
+            /** Format: date-time */
+            createdAtUtc?: string;
+            /** Format: date-time */
+            updatedAtUtc?: string;
+            /** Format: date-time */
+            startedAtUtc?: string | null;
+            /** Format: date-time */
+            completedAtUtc?: string | null;
+        };
+        /**
+         * Format: int32
+         * @enum {integer}
+         */
+        SessionDifficultyFeedback: 1 | 2 | 3 | 4 | 5;
         SessionDto: {
             /** Format: uuid */
             id?: string;
@@ -562,6 +774,16 @@ export interface components {
             startedAtUtc?: string | null;
             /** Format: date-time */
             completedAtUtc?: string | null;
+        };
+        SessionHandsOnDto: {
+            instructions?: string | null;
+            expectedOutput?: string | null;
+        };
+        SessionReflectionDto: {
+            solution?: string | null;
+            reflection?: string | null;
+            notes?: string | null;
+            difficultyFeedback?: components["schemas"]["SessionDifficultyFeedback"];
         };
         /**
          * Format: int32

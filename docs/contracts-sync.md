@@ -4,7 +4,8 @@ This frontend generates API TypeScript types directly from the backend Swagger/O
 
 ## Why this setup
 
-- Backend is the contract source of truth.
+- Backend is the contract source of truth (the running API serves **`/swagger/v1/swagger.json`**).
+- The frontend **always** generates types by **calling the backend over HTTP** — there is no checked-in OpenAPI snapshot or `contracts/` tree in the backend repo for this workflow.
 - Frontend can sync on demand without copying files between repos.
 - Generated types are committed so CI/builds are not blocked by backend availability.
 

@@ -1,6 +1,10 @@
 import type { components } from '@/generated/api-types';
 
 export type SessionDto = components['schemas']['SessionDto'];
+export type SessionDetailDto = components['schemas']['SessionDetailDto'];
+export type SessionContextDto = components['schemas']['SessionContextDto'];
+export type SessionHandsOnDto = components['schemas']['SessionHandsOnDto'];
+export type SessionReflectionDto = components['schemas']['SessionReflectionDto'];
 export type SessionStatus = components['schemas']['SessionStatus'];
 
 export const SESSION_STATUS_LABELS: Record<SessionStatus, string> = {
