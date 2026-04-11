@@ -3,16 +3,18 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius);
-  font-weight: 500;
-  font-size: 0.875rem;
-  padding: 0.5rem 1rem;
-  height: 2.5rem;
-  transition: all 0.2s ease;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 0.5rem 1.125rem;
+  height: 2.625rem;
+  transition: all 0.18s ease;
   position: relative;
+  letter-spacing: 0.005em;
 }
 
 .button:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: not-allowed;
 }
 
@@ -22,26 +24,32 @@
 }
 
 .primary:hover:not(:disabled) {
-  filter: brightness(1.1);
+  background-color: #285045;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(30, 64, 53, 0.28);
 }
 
 .secondary {
   background-color: var(--secondary);
   color: var(--secondary-foreground);
+  border: 1px solid var(--border);
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: #b5ceab; /* slightly darker tea green */
+  background-color: #d4e8de;
+  border-color: #b8d8c8;
 }
 
 .outline {
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   background: transparent;
   color: var(--foreground);
 }
 
 .outline:hover:not(:disabled) {
   background-color: var(--muted);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .ghost {
@@ -57,15 +65,15 @@
   position: absolute;
   width: 1.25rem;
   height: 1.25rem;
-  animation: spin 1s linear infinite;
+  animation: spin 0.8s linear infinite;
 }
 
 .spinnerTrack {
-  opacity: 0.25;
+  opacity: 0.2;
 }
 
 .spinnerHead {
-  opacity: 0.75;
+  opacity: 0.8;
 }
 
 .hiddenContent {
@@ -73,10 +81,6 @@
 }
 
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }

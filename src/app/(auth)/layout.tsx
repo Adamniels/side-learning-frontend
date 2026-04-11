@@ -5,9 +5,15 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className={styles.layoutWrapper}>
       <div className={styles.contentContainer}>
-        {/* We could potentially add a logo or illustration here based on the brand */}
         <div className={styles.brandSection}>
-          <h1 className={styles.logo}>SideLearning</h1>
+          <div className={styles.brandMark}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </div>
+          <h1 className={styles.logo}>Side Learning</h1>
+          <p className={styles.logoTagline}>Structured sessions for curious minds</p>
         </div>
         <div className={styles.formSection}>
           {children}

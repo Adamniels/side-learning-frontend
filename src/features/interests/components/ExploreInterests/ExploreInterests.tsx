@@ -8,13 +8,15 @@ export function ExploreInterests() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Explore Categories</div>
+      <div className={styles.header}>
+        <div className={styles.title}>Explore Your Interests</div>
+      </div>
       
       {isLoading ? (
         <div className={styles.emptyState}>Loading interests...</div>
       ) : interests.length > 0 ? (
         <div className={styles.grid}>
-          {interests.map((interest, idx) => (
+          {interests.map((interest) => (
             <div key={interest.label} className={styles.card}>
               <div className={styles.cardContent}>
                 <span className={styles.label}>{interest.label}</span>

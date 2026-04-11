@@ -7,40 +7,46 @@ import styles from './Home.module.css';
 
 export default function HomePage() {
   const { user } = useAuth();
-  
+  const firstName = user?.name?.split(' ')[0] || 'there';
+
   return (
     <div className={styles.container}>
       <header className={styles.welcomeSection}>
-        <h1 className={styles.heading}>Welcome back, {user?.name?.split(' ')[0] || 'User'}!</h1>
-        <p className={styles.subheading}>Ready to create some amazing lessons with AI!</p>
-        <button className={styles.createButton}>Create New Lesson</button>
+        <div className={styles.welcomeText}>
+          <h1 className={styles.heading}>
+            Welcome back, <span className={styles.headingAccent}>{firstName}</span>
+          </h1>
+          <p className={styles.subheading}>What would you like to explore today?</p>
+        </div>
+        <button className={styles.createButton}>+ New Session</button>
       </header>
 
       <div className={styles.pageGridArchitecture}>
-        
-        {/* Main Area (Spans Left & Center Columns equivalent) */}
+
+        {/* Main content area */}
         <div className={styles.mainContentArea}>
           <div className={styles.topCardsGrid}>
+
+            {/* Create banner */}
             <div className={styles.createBanner}>
               <div className={styles.bannerContent}>
-                <h2 className={styles.bannerTitle}>Create Your Own Lessons</h2>
+                <h2 className={styles.bannerTitle}>Start a learning session</h2>
                 <p className={styles.bannerText}>
-                  Harness the power of AI to create personalized lessons that fit your learning goals.
+                  AI builds a structured 1–2 hour session around any topic you care about.
                 </p>
               </div>
               <div className={styles.bannerAction}>
                 <button className={styles.getStartedButton}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '0.25rem' }}>
-                    <path d="M9 18h6" />
-                    <path d="M10 22h4" />
-                    <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14" />
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
                   </svg>
-                  Get Started
+                  Get started
                 </button>
               </div>
-              <img src="/robot-image.png" alt="AI Robot Assistant" className={styles.robotImage} />
+              <img src="/robot-image.png" alt="AI assistant" className={styles.robotImage} />
             </div>
 
+            {/* Active session */}
             <div className={styles.centralColumn}>
               <ActiveSessionCard />
             </div>
@@ -49,12 +55,12 @@ export default function HomePage() {
           <ExploreInterests />
         </div>
 
-        {/* Right Sidebar Column */}
+        {/* Right sidebar */}
         <aside className={styles.sidebarColumn}>
           <div className={styles.emptyStatsWidget}>
-            <h3 style={{ fontSize: '1.05rem', marginBottom: '1rem', color: 'var(--foreground)'}}>Your Learning Stats</h3>
-            <div style={{ color: 'var(--muted-foreground)', fontSize: '0.9rem', padding: '2rem 1rem', textAlign: 'center', backgroundColor: 'var(--muted)', borderRadius: 'var(--radius)' }}>
-              No stats available yet.
+            <h3 className={styles.statsWidgetTitle}>Learning Stats</h3>
+            <div className={styles.statsEmptyInner}>
+              Complete your first session to start tracking progress.
             </div>
           </div>
         </aside>
