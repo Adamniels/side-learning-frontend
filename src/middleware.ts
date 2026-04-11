@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const AUTH_COOKIE_KEY = 'sl_auth';
 
-const protectedPaths = ['/home'];
+const protectedPaths = ['/home', '/sessions'];
 const authPaths = ['/login', '/register'];
 
 const pathMatches = (pathname: string, basePath: string) =>
@@ -29,5 +29,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/home/:path*', '/login', '/register'],
+  matcher: ['/home/:path*', '/sessions/:path*', '/login', '/register'],
 };

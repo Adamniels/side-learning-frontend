@@ -50,7 +50,12 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             >
               Home
             </Link>
-            <Link href="#" className={styles.navLink}>My Lessons</Link>
+            <Link
+              href="/sessions"
+              className={`${styles.navLink} ${pathname.startsWith('/sessions') ? styles.navLinkActive : ''}`}
+            >
+              My Lessons
+            </Link>
             <Link href="#" className={styles.navLink}>Browse</Link>
             <Link href="#" className={styles.navLink}>Activity</Link>
           </div>

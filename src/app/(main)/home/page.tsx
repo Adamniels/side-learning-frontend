@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import { ActiveSessionCard } from '@/features/sessions/components/ActiveSessionCard/ActiveSessionCard';
 import { ExploreInterests } from '@/features/interests/components/ExploreInterests/ExploreInterests';
@@ -18,7 +19,9 @@ export default function HomePage() {
           </h1>
           <p className={styles.subheading}>What would you like to explore today?</p>
         </div>
-        <button className={styles.createButton}>+ New Session</button>
+        <Link href="/sessions/new" className={styles.createButton}>
+          + New Session
+        </Link>
       </header>
 
       <div className={styles.pageGridArchitecture}>
@@ -36,12 +39,12 @@ export default function HomePage() {
                 </p>
               </div>
               <div className={styles.bannerAction}>
-                <button className={styles.getStartedButton}>
+                <Link href="/sessions/new" className={styles.getStartedButton}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polygon points="5 3 19 12 5 21 5 3"/>
                   </svg>
                   Get started
-                </button>
+                </Link>
               </div>
               <img src="/robot-image.png" alt="AI assistant" className={styles.robotImage} />
             </div>
